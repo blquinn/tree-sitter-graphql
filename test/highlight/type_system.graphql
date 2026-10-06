@@ -1,0 +1,16 @@
+"A user"
+# <- @string.documentation
+type User implements Node {
+# <- @keyword
+#    ^ @type.definition
+#                    ^ @type
+  id: ID!
+# ^ @property
+  role(admin: Boolean = true): Role
+#      ^ @variable.parameter
+#                       ^ @boolean
+}
+
+directive @auth on FIELD_DEFINITION
+#         ^ @attribute
+#                  ^ @constant.builtin

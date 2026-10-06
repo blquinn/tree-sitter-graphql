@@ -1,5 +1,171 @@
 [
   {
+    "type": "_definition",
+    "named": true,
+    "subtypes": [
+      {
+        "type": "directive_definition",
+        "named": true
+      },
+      {
+        "type": "enum_type_definition",
+        "named": true
+      },
+      {
+        "type": "enum_type_extension",
+        "named": true
+      },
+      {
+        "type": "fragment_definition",
+        "named": true
+      },
+      {
+        "type": "input_object_type_definition",
+        "named": true
+      },
+      {
+        "type": "input_object_type_extension",
+        "named": true
+      },
+      {
+        "type": "interface_type_definition",
+        "named": true
+      },
+      {
+        "type": "interface_type_extension",
+        "named": true
+      },
+      {
+        "type": "object_type_definition",
+        "named": true
+      },
+      {
+        "type": "object_type_extension",
+        "named": true
+      },
+      {
+        "type": "operation_definition",
+        "named": true
+      },
+      {
+        "type": "scalar_type_definition",
+        "named": true
+      },
+      {
+        "type": "scalar_type_extension",
+        "named": true
+      },
+      {
+        "type": "schema_definition",
+        "named": true
+      },
+      {
+        "type": "schema_extension",
+        "named": true
+      },
+      {
+        "type": "union_type_definition",
+        "named": true
+      },
+      {
+        "type": "union_type_extension",
+        "named": true
+      }
+    ]
+  },
+  {
+    "type": "_directive_location",
+    "named": true,
+    "subtypes": [
+      {
+        "type": "executable_directive_location",
+        "named": true
+      },
+      {
+        "type": "type_system_directive_location",
+        "named": true
+      }
+    ]
+  },
+  {
+    "type": "_selection",
+    "named": true,
+    "subtypes": [
+      {
+        "type": "field",
+        "named": true
+      },
+      {
+        "type": "fragment_spread",
+        "named": true
+      },
+      {
+        "type": "inline_fragment",
+        "named": true
+      }
+    ]
+  },
+  {
+    "type": "_type",
+    "named": true,
+    "subtypes": [
+      {
+        "type": "list_type",
+        "named": true
+      },
+      {
+        "type": "named_type",
+        "named": true
+      },
+      {
+        "type": "non_null_type",
+        "named": true
+      }
+    ]
+  },
+  {
+    "type": "_value",
+    "named": true,
+    "subtypes": [
+      {
+        "type": "boolean_value",
+        "named": true
+      },
+      {
+        "type": "enum_value",
+        "named": true
+      },
+      {
+        "type": "float_value",
+        "named": true
+      },
+      {
+        "type": "int_value",
+        "named": true
+      },
+      {
+        "type": "list_value",
+        "named": true
+      },
+      {
+        "type": "null_value",
+        "named": true
+      },
+      {
+        "type": "object_value",
+        "named": true
+      },
+      {
+        "type": "string_value",
+        "named": true
+      },
+      {
+        "type": "variable",
+        "named": true
+      }
+    ]
+  },
+  {
     "type": "alias",
     "named": true,
     "fields": {},
@@ -17,20 +183,27 @@
   {
     "type": "argument",
     "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "name",
-          "named": true
-        },
-        {
-          "type": "value",
-          "named": true
-        }
-      ]
+    "fields": {
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "name",
+            "named": true
+          }
+        ]
+      },
+      "value": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "_value",
+            "named": true
+          }
+        ]
+      }
     }
   },
   {
@@ -77,30 +250,7 @@
       "required": true,
       "types": [
         {
-          "type": "value",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "definition",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "executable_definition",
-          "named": true
-        },
-        {
-          "type": "type_system_definition",
-          "named": true
-        },
-        {
-          "type": "type_system_extension",
+          "type": "_value",
           "named": true
         }
       ]
@@ -124,17 +274,24 @@
   {
     "type": "directive",
     "named": true,
-    "fields": {},
+    "fields": {
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "name",
+            "named": true
+          }
+        ]
+      }
+    },
     "children": {
-      "multiple": true,
-      "required": true,
+      "multiple": false,
+      "required": false,
       "types": [
         {
           "type": "arguments",
-          "named": true
-        },
-        {
-          "type": "name",
           "named": true
         }
       ]
@@ -143,7 +300,28 @@
   {
     "type": "directive_definition",
     "named": true,
-    "fields": {},
+    "fields": {
+      "description": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "description",
+            "named": true
+          }
+        ]
+      },
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "name",
+            "named": true
+          }
+        ]
+      }
+    },
     "children": {
       "multiple": true,
       "required": true,
@@ -153,34 +331,7 @@
           "named": true
         },
         {
-          "type": "description",
-          "named": true
-        },
-        {
           "type": "directive_locations",
-          "named": true
-        },
-        {
-          "type": "name",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "directive_location",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "executable_directive_location",
-          "named": true
-        },
-        {
-          "type": "type_system_directive_location",
           "named": true
         }
       ]
@@ -195,11 +346,7 @@
       "required": true,
       "types": [
         {
-          "type": "directive_location",
-          "named": true
-        },
-        {
-          "type": "directive_locations",
+          "type": "_directive_location",
           "named": true
         }
       ]
@@ -223,13 +370,14 @@
   {
     "type": "document",
     "named": true,
+    "root": true,
     "fields": {},
     "children": {
       "multiple": true,
-      "required": true,
+      "required": false,
       "types": [
         {
-          "type": "definition",
+          "type": "_definition",
           "named": true
         }
       ]
@@ -238,25 +386,38 @@
   {
     "type": "enum_type_definition",
     "named": true,
-    "fields": {},
+    "fields": {
+      "description": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "description",
+            "named": true
+          }
+        ]
+      },
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "name",
+            "named": true
+          }
+        ]
+      }
+    },
     "children": {
       "multiple": true,
-      "required": true,
+      "required": false,
       "types": [
-        {
-          "type": "description",
-          "named": true
-        },
         {
           "type": "directives",
           "named": true
         },
         {
           "type": "enum_values_definition",
-          "named": true
-        },
-        {
-          "type": "name",
           "named": true
         }
       ]
@@ -265,7 +426,18 @@
   {
     "type": "enum_type_extension",
     "named": true,
-    "fields": {},
+    "fields": {
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "name",
+            "named": true
+          }
+        ]
+      }
+    },
     "children": {
       "multiple": true,
       "required": true,
@@ -276,10 +448,6 @@
         },
         {
           "type": "enum_values_definition",
-          "named": true
-        },
-        {
-          "type": "name",
           "named": true
         }
       ]
@@ -303,15 +471,22 @@
   {
     "type": "enum_value_definition",
     "named": true,
-    "fields": {},
+    "fields": {
+      "description": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "description",
+            "named": true
+          }
+        ]
+      }
+    },
     "children": {
       "multiple": true,
       "required": true,
       "types": [
-        {
-          "type": "description",
-          "named": true
-        },
         {
           "type": "directives",
           "named": true
@@ -339,25 +514,6 @@
     }
   },
   {
-    "type": "executable_definition",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "fragment_definition",
-          "named": true
-        },
-        {
-          "type": "operation_definition",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
     "type": "executable_directive_location",
     "named": true,
     "fields": {}
@@ -365,10 +521,21 @@
   {
     "type": "field",
     "named": true,
-    "fields": {},
+    "fields": {
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "name",
+            "named": true
+          }
+        ]
+      }
+    },
     "children": {
       "multiple": true,
-      "required": true,
+      "required": false,
       "types": [
         {
           "type": "alias",
@@ -379,11 +546,7 @@
           "named": true
         },
         {
-          "type": "directive",
-          "named": true
-        },
-        {
-          "type": "name",
+          "type": "directives",
           "named": true
         },
         {
@@ -396,29 +559,48 @@
   {
     "type": "field_definition",
     "named": true,
-    "fields": {},
+    "fields": {
+      "description": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "description",
+            "named": true
+          }
+        ]
+      },
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "name",
+            "named": true
+          }
+        ]
+      },
+      "type": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "_type",
+            "named": true
+          }
+        ]
+      }
+    },
     "children": {
       "multiple": true,
-      "required": true,
+      "required": false,
       "types": [
         {
           "type": "arguments_definition",
           "named": true
         },
         {
-          "type": "description",
-          "named": true
-        },
-        {
           "type": "directives",
-          "named": true
-        },
-        {
-          "type": "name",
-          "named": true
-        },
-        {
-          "type": "type",
           "named": true
         }
       ]
@@ -442,7 +624,18 @@
   {
     "type": "fragment_definition",
     "named": true,
-    "fields": {},
+    "fields": {
+      "description": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "description",
+            "named": true
+          }
+        ]
+      }
+    },
     "children": {
       "multiple": true,
       "required": true,
@@ -461,6 +654,10 @@
         },
         {
           "type": "type_condition",
+          "named": true
+        },
+        {
+          "type": "variable_definitions",
           "named": true
         }
       ]
@@ -490,6 +687,10 @@
       "required": true,
       "types": [
         {
+          "type": "arguments",
+          "named": true
+        },
+        {
           "type": "directives",
           "named": true
         },
@@ -508,10 +709,6 @@
       "multiple": true,
       "required": true,
       "types": [
-        {
-          "type": "implements_interfaces",
-          "named": true
-        },
         {
           "type": "named_type",
           "named": true
@@ -560,25 +757,38 @@
   {
     "type": "input_object_type_definition",
     "named": true,
-    "fields": {},
+    "fields": {
+      "description": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "description",
+            "named": true
+          }
+        ]
+      },
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "name",
+            "named": true
+          }
+        ]
+      }
+    },
     "children": {
       "multiple": true,
-      "required": true,
+      "required": false,
       "types": [
-        {
-          "type": "description",
-          "named": true
-        },
         {
           "type": "directives",
           "named": true
         },
         {
           "type": "input_fields_definition",
-          "named": true
-        },
-        {
-          "type": "name",
           "named": true
         }
       ]
@@ -587,7 +797,18 @@
   {
     "type": "input_object_type_extension",
     "named": true,
-    "fields": {},
+    "fields": {
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "name",
+            "named": true
+          }
+        ]
+      }
+    },
     "children": {
       "multiple": true,
       "required": true,
@@ -599,10 +820,6 @@
         {
           "type": "input_fields_definition",
           "named": true
-        },
-        {
-          "type": "name",
-          "named": true
         }
       ]
     }
@@ -610,29 +827,48 @@
   {
     "type": "input_value_definition",
     "named": true,
-    "fields": {},
+    "fields": {
+      "description": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "description",
+            "named": true
+          }
+        ]
+      },
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "name",
+            "named": true
+          }
+        ]
+      },
+      "type": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "_type",
+            "named": true
+          }
+        ]
+      }
+    },
     "children": {
       "multiple": true,
-      "required": true,
+      "required": false,
       "types": [
         {
           "type": "default_value",
           "named": true
         },
         {
-          "type": "description",
-          "named": true
-        },
-        {
           "type": "directives",
-          "named": true
-        },
-        {
-          "type": "name",
-          "named": true
-        },
-        {
-          "type": "type",
           "named": true
         }
       ]
@@ -641,15 +877,32 @@
   {
     "type": "interface_type_definition",
     "named": true,
-    "fields": {},
+    "fields": {
+      "description": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "description",
+            "named": true
+          }
+        ]
+      },
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "name",
+            "named": true
+          }
+        ]
+      }
+    },
     "children": {
       "multiple": true,
-      "required": true,
+      "required": false,
       "types": [
-        {
-          "type": "description",
-          "named": true
-        },
         {
           "type": "directives",
           "named": true
@@ -660,10 +913,6 @@
         },
         {
           "type": "implements_interfaces",
-          "named": true
-        },
-        {
-          "type": "name",
           "named": true
         }
       ]
@@ -672,7 +921,18 @@
   {
     "type": "interface_type_extension",
     "named": true,
-    "fields": {},
+    "fields": {
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "name",
+            "named": true
+          }
+        ]
+      }
+    },
     "children": {
       "multiple": true,
       "required": true,
@@ -687,10 +947,6 @@
         },
         {
           "type": "implements_interfaces",
-          "named": true
-        },
-        {
-          "type": "name",
           "named": true
         }
       ]
@@ -705,7 +961,7 @@
       "required": true,
       "types": [
         {
-          "type": "type",
+          "type": "_type",
           "named": true
         }
       ]
@@ -720,7 +976,7 @@
       "required": false,
       "types": [
         {
-          "type": "value",
+          "type": "_value",
           "named": true
         }
       ]
@@ -763,38 +1019,58 @@
   {
     "type": "object_field",
     "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "comma",
-          "named": true
-        },
-        {
-          "type": "name",
-          "named": true
-        },
-        {
-          "type": "value",
-          "named": true
-        }
-      ]
+    "fields": {
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "name",
+            "named": true
+          }
+        ]
+      },
+      "value": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "_value",
+            "named": true
+          }
+        ]
+      }
     }
   },
   {
     "type": "object_type_definition",
     "named": true,
-    "fields": {},
+    "fields": {
+      "description": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "description",
+            "named": true
+          }
+        ]
+      },
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "name",
+            "named": true
+          }
+        ]
+      }
+    },
     "children": {
       "multiple": true,
-      "required": true,
+      "required": false,
       "types": [
-        {
-          "type": "description",
-          "named": true
-        },
         {
           "type": "directives",
           "named": true
@@ -805,10 +1081,6 @@
         },
         {
           "type": "implements_interfaces",
-          "named": true
-        },
-        {
-          "type": "name",
           "named": true
         }
       ]
@@ -817,7 +1089,18 @@
   {
     "type": "object_type_extension",
     "named": true,
-    "fields": {},
+    "fields": {
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "name",
+            "named": true
+          }
+        ]
+      }
+    },
     "children": {
       "multiple": true,
       "required": true,
@@ -832,10 +1115,6 @@
         },
         {
           "type": "implements_interfaces",
-          "named": true
-        },
-        {
-          "type": "name",
           "named": true
         }
       ]
@@ -859,21 +1138,44 @@
   {
     "type": "operation_definition",
     "named": true,
-    "fields": {},
+    "fields": {
+      "description": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "description",
+            "named": true
+          }
+        ]
+      },
+      "name": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "name",
+            "named": true
+          }
+        ]
+      },
+      "operation_type": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "operation_type",
+            "named": true
+          }
+        ]
+      }
+    },
     "children": {
       "multiple": true,
       "required": true,
       "types": [
         {
           "type": "directives",
-          "named": true
-        },
-        {
-          "type": "name",
-          "named": true
-        },
-        {
-          "type": "operation_type",
           "named": true
         },
         {
@@ -914,21 +1216,34 @@
   {
     "type": "scalar_type_definition",
     "named": true,
-    "fields": {},
+    "fields": {
+      "description": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "description",
+            "named": true
+          }
+        ]
+      },
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "name",
+            "named": true
+          }
+        ]
+      }
+    },
     "children": {
-      "multiple": true,
-      "required": true,
+      "multiple": false,
+      "required": false,
       "types": [
         {
-          "type": "description",
-          "named": true
-        },
-        {
           "type": "directives",
-          "named": true
-        },
-        {
-          "type": "name",
           "named": true
         }
       ]
@@ -937,17 +1252,24 @@
   {
     "type": "scalar_type_extension",
     "named": true,
-    "fields": {},
+    "fields": {
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "name",
+            "named": true
+          }
+        ]
+      }
+    },
     "children": {
-      "multiple": true,
+      "multiple": false,
       "required": true,
       "types": [
         {
           "type": "directives",
-          "named": true
-        },
-        {
-          "type": "name",
           "named": true
         }
       ]
@@ -956,15 +1278,22 @@
   {
     "type": "schema_definition",
     "named": true,
-    "fields": {},
+    "fields": {
+      "description": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "description",
+            "named": true
+          }
+        ]
+      }
+    },
     "children": {
       "multiple": true,
-      "required": true,
+      "required": false,
       "types": [
-        {
-          "type": "description",
-          "named": true
-        },
         {
           "type": "directives",
           "named": true
@@ -996,29 +1325,6 @@
     }
   },
   {
-    "type": "selection",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "field",
-          "named": true
-        },
-        {
-          "type": "fragment_spread",
-          "named": true
-        },
-        {
-          "type": "inline_fragment",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
     "type": "selection_set",
     "named": true,
     "fields": {},
@@ -1027,22 +1333,7 @@
       "required": true,
       "types": [
         {
-          "type": "selection",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "source_file",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "document",
+          "type": "_selection",
           "named": true
         }
       ]
@@ -1051,26 +1342,17 @@
   {
     "type": "string_value",
     "named": true,
-    "fields": {}
-  },
-  {
-    "type": "type",
-    "named": true,
     "fields": {},
     "children": {
-      "multiple": false,
-      "required": true,
+      "multiple": true,
+      "required": false,
       "types": [
         {
-          "type": "list_type",
+          "type": "escape_sequence",
           "named": true
         },
         {
-          "type": "named_type",
-          "named": true
-        },
-        {
-          "type": "non_null_type",
+          "type": "string_content",
           "named": true
         }
       ]
@@ -1092,121 +1374,9 @@
     }
   },
   {
-    "type": "type_definition",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "enum_type_definition",
-          "named": true
-        },
-        {
-          "type": "input_object_type_definition",
-          "named": true
-        },
-        {
-          "type": "interface_type_definition",
-          "named": true
-        },
-        {
-          "type": "object_type_definition",
-          "named": true
-        },
-        {
-          "type": "scalar_type_definition",
-          "named": true
-        },
-        {
-          "type": "union_type_definition",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "type_extension",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "enum_type_extension",
-          "named": true
-        },
-        {
-          "type": "input_object_type_extension",
-          "named": true
-        },
-        {
-          "type": "interface_type_extension",
-          "named": true
-        },
-        {
-          "type": "object_type_extension",
-          "named": true
-        },
-        {
-          "type": "scalar_type_extension",
-          "named": true
-        },
-        {
-          "type": "union_type_extension",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "type_system_definition",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "directive_definition",
-          "named": true
-        },
-        {
-          "type": "schema_definition",
-          "named": true
-        },
-        {
-          "type": "type_definition",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
     "type": "type_system_directive_location",
     "named": true,
     "fields": {}
-  },
-  {
-    "type": "type_system_extension",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "schema_extension",
-          "named": true
-        },
-        {
-          "type": "type_extension",
-          "named": true
-        }
-      ]
-    }
   },
   {
     "type": "union_member_types",
@@ -1219,10 +1389,6 @@
         {
           "type": "named_type",
           "named": true
-        },
-        {
-          "type": "union_member_types",
-          "named": true
         }
       ]
     }
@@ -1230,21 +1396,34 @@
   {
     "type": "union_type_definition",
     "named": true,
-    "fields": {},
+    "fields": {
+      "description": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "description",
+            "named": true
+          }
+        ]
+      },
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "name",
+            "named": true
+          }
+        ]
+      }
+    },
     "children": {
       "multiple": true,
-      "required": true,
+      "required": false,
       "types": [
         {
-          "type": "description",
-          "named": true
-        },
-        {
           "type": "directives",
-          "named": true
-        },
-        {
-          "type": "name",
           "named": true
         },
         {
@@ -1257,7 +1436,18 @@
   {
     "type": "union_type_extension",
     "named": true,
-    "fields": {},
+    "fields": {
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "name",
+            "named": true
+          }
+        ]
+      }
+    },
     "children": {
       "multiple": true,
       "required": true,
@@ -1267,58 +1457,7 @@
           "named": true
         },
         {
-          "type": "name",
-          "named": true
-        },
-        {
           "type": "union_member_types",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "value",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "boolean_value",
-          "named": true
-        },
-        {
-          "type": "enum_value",
-          "named": true
-        },
-        {
-          "type": "float_value",
-          "named": true
-        },
-        {
-          "type": "int_value",
-          "named": true
-        },
-        {
-          "type": "list_value",
-          "named": true
-        },
-        {
-          "type": "null_value",
-          "named": true
-        },
-        {
-          "type": "object_value",
-          "named": true
-        },
-        {
-          "type": "string_value",
-          "named": true
-        },
-        {
-          "type": "variable",
           "named": true
         }
       ]
@@ -1342,29 +1481,48 @@
   {
     "type": "variable_definition",
     "named": true,
-    "fields": {},
+    "fields": {
+      "description": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "description",
+            "named": true
+          }
+        ]
+      },
+      "type": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "_type",
+            "named": true
+          }
+        ]
+      },
+      "variable": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "variable",
+            "named": true
+          }
+        ]
+      }
+    },
     "children": {
       "multiple": true,
-      "required": true,
+      "required": false,
       "types": [
-        {
-          "type": "comma",
-          "named": true
-        },
         {
           "type": "default_value",
           "named": true
         },
         {
           "type": "directives",
-          "named": true
-        },
-        {
-          "type": "type",
-          "named": true
-        },
-        {
-          "type": "variable",
           "named": true
         }
       ]
@@ -1391,10 +1549,6 @@
   },
   {
     "type": "\"",
-    "named": false
-  },
-  {
-    "type": "\"\"\"",
     "named": false
   },
   {
@@ -1458,6 +1612,10 @@
     "named": false
   },
   {
+    "type": "FRAGMENT_VARIABLE_DEFINITION",
+    "named": false
+  },
+  {
     "type": "INLINE_FRAGMENT",
     "named": false
   },
@@ -1514,12 +1672,9 @@
     "named": false
   },
   {
-    "type": "comma",
-    "named": true
-  },
-  {
     "type": "comment",
-    "named": true
+    "named": true,
+    "extra": true
   },
   {
     "type": "directive",
@@ -1528,6 +1683,10 @@
   {
     "type": "enum",
     "named": false
+  },
+  {
+    "type": "escape_sequence",
+    "named": true
   },
   {
     "type": "extend",
@@ -1592,6 +1751,10 @@
   {
     "type": "schema",
     "named": false
+  },
+  {
+    "type": "string_content",
+    "named": true
   },
   {
     "type": "subscription",

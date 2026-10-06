@@ -1,0 +1,28 @@
+# comment only below
+"""
+Block with "quotes" and ""two"" and \""" escaped
+"""
+query Q($a: Int = 1, $b: [String!]! @d) @live {
+  a @include(if: $x) @skip(if: $y)
+  type(on: "x\n\"q\" é \u{1F600}") { on type query }
+  ...F(x: 1)
+  ... on T { id }
+  s: f(v: "#", w: "", e: ENUM, n: null, t: true, l: [1, -2.5e3, {a: 1, b: "x"}])
+}
+"desc" fragment F($x: Int = 2) on T @d { id }
+"Op desc" mutation M { x }
+{ anon }
+extend schema @d
+extend schema { query: Q }
+extend type A @d
+extend type A implements B
+extend input I { a: Int }
+extend union U = A | B
+extend enum E { X }
+extend scalar S @d
+type A implements & B & C @d { "d" f(a: Int = 1 @d, "x" b: String): [A!]! @d }
+input X @oneOf { a: Int b: String }
+union U = | A | B
+enum E { "d" A @deprecated B }
+directive @d(a: Int) repeatable on | QUERY | FRAGMENT_VARIABLE_DEFINITION | FIELD_DEFINITION
+schema @d { query: Q mutation: M }

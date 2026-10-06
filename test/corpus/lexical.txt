@@ -1,0 +1,139 @@
+========================================
+Empty document
+========================================
+
+
+
+----------------------------------------
+
+(document)
+
+========================================
+Comment-only document
+========================================
+
+# nothing here
+# at all
+
+----------------------------------------
+
+(document
+  (comment)
+  (comment))
+
+========================================
+String escapes
+========================================
+
+{ a(s: "q\"q \\ \/ \b \f \n \r \t \u00e9 \u{1F600}") }
+
+----------------------------------------
+
+(document
+  (operation_definition
+    (selection_set
+      (field
+        (name)
+        (arguments
+          (argument
+            (name)
+            (string_value
+              (string_content)
+              (escape_sequence)
+              (string_content)
+              (escape_sequence)
+              (string_content)
+              (escape_sequence)
+              (string_content)
+              (escape_sequence)
+              (string_content)
+              (escape_sequence)
+              (string_content)
+              (escape_sequence)
+              (string_content)
+              (escape_sequence)
+              (string_content)
+              (escape_sequence)
+              (string_content)
+              (escape_sequence)
+              (string_content)
+              (escape_sequence))))))))
+
+========================================
+Empty string and hash inside string
+========================================
+
+{ a(s: "", t: "#not a comment") }
+
+----------------------------------------
+
+(document
+  (operation_definition
+    (selection_set
+      (field
+        (name)
+        (arguments
+          (argument
+            (name)
+            (string_value))
+          (argument
+            (name)
+            (string_value
+              (string_content))))))))
+
+========================================
+Block string
+========================================
+
+"""
+A "quoted" word, ""two"", and \""" escaped
+"""
+scalar S
+
+----------------------------------------
+
+(document
+  (scalar_type_definition
+    (description
+      (string_value))
+    (name)))
+
+========================================
+Comments between tokens
+========================================
+
+type A { # one
+  a: Int # two
+}
+
+----------------------------------------
+
+(document
+  (object_type_definition
+    (name)
+    (fields_definition
+      (comment)
+      (field_definition
+        (name)
+        (named_type
+          (name)))
+      (comment))))
+
+========================================
+Unicode in strings
+========================================
+
+{ a(s: "héllo ☃") }
+
+----------------------------------------
+
+(document
+  (operation_definition
+    (selection_set
+      (field
+        (name)
+        (arguments
+          (argument
+            (name)
+            (string_value
+              (string_content))))))))

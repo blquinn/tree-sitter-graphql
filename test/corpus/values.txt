@@ -1,0 +1,108 @@
+========================================
+Scalar values
+========================================
+
+{ a(i: 1, n: -2, f: 1.5, e: 2e10, g: -0.5E-3, s: "x", b: true, c: false, z: null, v: $v, en: ENUM) }
+
+----------------------------------------
+
+(document
+  (operation_definition
+    (selection_set
+      (field
+        (name)
+        (arguments
+          (argument
+            (name)
+            (int_value))
+          (argument
+            (name)
+            (int_value))
+          (argument
+            (name)
+            (float_value))
+          (argument
+            (name)
+            (float_value))
+          (argument
+            (name)
+            (float_value))
+          (argument
+            (name)
+            (string_value
+              (string_content)))
+          (argument
+            (name)
+            (boolean_value))
+          (argument
+            (name)
+            (boolean_value))
+          (argument
+            (name)
+            (null_value))
+          (argument
+            (name)
+            (variable
+              (name)))
+          (argument
+            (name)
+            (enum_value
+              (name))))))))
+
+========================================
+Lists and objects
+========================================
+
+{ a(l: [1, 2 3], o: {a: 1, b: [], c: {}}) }
+
+----------------------------------------
+
+(document
+  (operation_definition
+    (selection_set
+      (field
+        (name)
+        (arguments
+          (argument
+            (name)
+            (list_value
+              (int_value)
+              (int_value)
+              (int_value)))
+          (argument
+            (name)
+            (object_value
+              (object_field
+                (name)
+                (int_value))
+              (object_field
+                (name)
+                (list_value))
+              (object_field
+                (name)
+                (object_value)))))))))
+
+========================================
+Commas are insignificant
+========================================
+
+{ a(x: 1,, y: 2,) b, c }
+
+----------------------------------------
+
+(document
+  (operation_definition
+    (selection_set
+      (field
+        (name)
+        (arguments
+          (argument
+            (name)
+            (int_value))
+          (argument
+            (name)
+            (int_value))))
+      (field
+        (name))
+      (field
+        (name)))))

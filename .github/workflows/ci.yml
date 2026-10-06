@@ -1,0 +1,39 @@
+name: CI
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: npm install --ignore-scripts
+      - name: Generated parser is up to date
+        run: |
+          npx tree-sitter generate
+          git diff --exit-code -- src
+      - name: Corpus and highlight tests
+        run: npx tree-sitter test
+      - name: Fixtures parse without errors
+        run: npx tree-sitter parse --quiet --stat test/fixtures/*.graphql
+      - name: Schema coordinate grammar
+        working-directory: schema_coordinate
+        run: |
+          npx tree-sitter generate
+          npx tree-sitter test
+      - name: Node binding
+        run: |
+          npm install
+          npm test
+
+  rust:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: cargo test

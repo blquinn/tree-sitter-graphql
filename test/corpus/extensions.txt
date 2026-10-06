@@ -1,0 +1,204 @@
+========================================
+Schema extension
+========================================
+
+extend schema @d
+
+extend schema { query: Q }
+
+extend schema @d { query: Q mutation: M }
+
+----------------------------------------
+
+(document
+  (schema_extension
+    (directives
+      (directive
+        (name))))
+  (schema_extension
+    (root_operation_type_definition
+      (operation_type)
+      (named_type
+        (name))))
+  (schema_extension
+    (directives
+      (directive
+        (name)))
+    (root_operation_type_definition
+      (operation_type)
+      (named_type
+        (name)))
+    (root_operation_type_definition
+      (operation_type)
+      (named_type
+        (name)))))
+
+========================================
+Scalar extension
+========================================
+
+extend scalar S @d
+
+----------------------------------------
+
+(document
+  (scalar_type_extension
+    (name)
+    (directives
+      (directive
+        (name)))))
+
+========================================
+Object extension
+========================================
+
+extend type A @d
+
+extend type A implements B
+
+extend type A { f: Int }
+
+extend type A implements B @d { f: Int }
+
+----------------------------------------
+
+(document
+  (object_type_extension
+    (name)
+    (directives
+      (directive
+        (name))))
+  (object_type_extension
+    (name)
+    (implements_interfaces
+      (named_type
+        (name))))
+  (object_type_extension
+    (name)
+    (fields_definition
+      (field_definition
+        (name)
+        (named_type
+          (name)))))
+  (object_type_extension
+    (name)
+    (implements_interfaces
+      (named_type
+        (name)))
+    (directives
+      (directive
+        (name)))
+    (fields_definition
+      (field_definition
+        (name)
+        (named_type
+          (name))))))
+
+========================================
+Interface extension
+========================================
+
+extend interface I @d
+
+extend interface I implements J { f: Int }
+
+----------------------------------------
+
+(document
+  (interface_type_extension
+    (name)
+    (directives
+      (directive
+        (name))))
+  (interface_type_extension
+    (name)
+    (implements_interfaces
+      (named_type
+        (name)))
+    (fields_definition
+      (field_definition
+        (name)
+        (named_type
+          (name))))))
+
+========================================
+Union extension
+========================================
+
+extend union U @d
+
+extend union U = A | B
+
+----------------------------------------
+
+(document
+  (union_type_extension
+    (name)
+    (directives
+      (directive
+        (name))))
+  (union_type_extension
+    (name)
+    (union_member_types
+      (named_type
+        (name))
+      (named_type
+        (name)))))
+
+========================================
+Enum extension
+========================================
+
+extend enum E @d
+
+extend enum E { X }
+
+----------------------------------------
+
+(document
+  (enum_type_extension
+    (name)
+    (directives
+      (directive
+        (name))))
+  (enum_type_extension
+    (name)
+    (enum_values_definition
+      (enum_value_definition
+        (enum_value
+          (name))))))
+
+========================================
+Input extension
+========================================
+
+extend input I @d
+
+extend input I { a: Int }
+
+----------------------------------------
+
+(document
+  (input_object_type_extension
+    (name)
+    (directives
+      (directive
+        (name))))
+  (input_object_type_extension
+    (name)
+    (input_fields_definition
+      (input_value_definition
+        (name)
+        (named_type
+          (name))))))
+
+========================================
+Bare extension is an error (no body)
+:error
+========================================
+
+extend type A
+
+----------------------------------------
+
+

@@ -1,0 +1,15 @@
+query GetUser($id: ID!) @live {
+# <- @keyword
+#     ^ @function
+#             ^ @variable
+#                  ^ @type
+#                       ^ @attribute
+  user(id: $id) {
+# ^ @property
+#      ^ @variable.parameter
+    name: fullName
+#   ^ @property
+    ...F
+#   ^ @punctuation.special
+  }
+}

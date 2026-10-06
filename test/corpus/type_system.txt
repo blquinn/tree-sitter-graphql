@@ -1,0 +1,295 @@
+========================================
+Schema definition
+========================================
+
+"d" schema @d { query: Q mutation: M subscription: S }
+
+----------------------------------------
+
+(document
+  (schema_definition
+    (description
+      (string_value
+        (string_content)))
+    (directives
+      (directive
+        (name)))
+    (root_operation_type_definition
+      (operation_type)
+      (named_type
+        (name)))
+    (root_operation_type_definition
+      (operation_type)
+      (named_type
+        (name)))
+    (root_operation_type_definition
+      (operation_type)
+      (named_type
+        (name)))))
+
+========================================
+Scalar
+========================================
+
+"d" scalar Date @specifiedBy(url: "x")
+
+----------------------------------------
+
+(document
+  (scalar_type_definition
+    (description
+      (string_value
+        (string_content)))
+    (name)
+    (directives
+      (directive
+        (name)
+        (arguments
+          (argument
+            (name)
+            (string_value
+              (string_content))))))))
+
+========================================
+Object type
+========================================
+
+"d"
+type A implements & B & C @d {
+  "f" f(a: Int = 1 @d, "x" b: String): [A!]! @d
+}
+
+----------------------------------------
+
+(document
+  (object_type_definition
+    (description
+      (string_value
+        (string_content)))
+    (name)
+    (implements_interfaces
+      (named_type
+        (name))
+      (named_type
+        (name)))
+    (directives
+      (directive
+        (name)))
+    (fields_definition
+      (field_definition
+        (description
+          (string_value
+            (string_content)))
+        (name)
+        (arguments_definition
+          (input_value_definition
+            (name)
+            (named_type
+              (name))
+            (default_value
+              (int_value))
+            (directives
+              (directive
+                (name))))
+          (input_value_definition
+            (description
+              (string_value
+                (string_content)))
+            (name)
+            (named_type
+              (name))))
+        (non_null_type
+          (list_type
+            (non_null_type
+              (named_type
+                (name)))))
+        (directives
+          (directive
+            (name)))))))
+
+========================================
+Object type without fields
+========================================
+
+type A
+
+type B implements C
+
+----------------------------------------
+
+(document
+  (object_type_definition
+    (name))
+  (object_type_definition
+    (name)
+    (implements_interfaces
+      (named_type
+        (name)))))
+
+========================================
+Interface
+========================================
+
+interface I implements J { id: ID! }
+
+----------------------------------------
+
+(document
+  (interface_type_definition
+    (name)
+    (implements_interfaces
+      (named_type
+        (name)))
+    (fields_definition
+      (field_definition
+        (name)
+        (non_null_type
+          (named_type
+            (name)))))))
+
+========================================
+Union
+========================================
+
+union U = | A | B
+
+union V
+
+----------------------------------------
+
+(document
+  (union_type_definition
+    (name)
+    (union_member_types
+      (named_type
+        (name))
+      (named_type
+        (name))))
+  (union_type_definition
+    (name)))
+
+========================================
+Enum
+========================================
+
+enum E { "d" A @deprecated(reason: "x") B }
+
+----------------------------------------
+
+(document
+  (enum_type_definition
+    (name)
+    (enum_values_definition
+      (enum_value_definition
+        (description
+          (string_value
+            (string_content)))
+        (enum_value
+          (name))
+        (directives
+          (directive
+            (name)
+            (arguments
+              (argument
+                (name)
+                (string_value
+                  (string_content)))))))
+      (enum_value_definition
+        (enum_value
+          (name))))))
+
+========================================
+Input object and OneOf
+========================================
+
+input X @oneOf { a: Int b: String = "x" }
+
+----------------------------------------
+
+(document
+  (input_object_type_definition
+    (name)
+    (directives
+      (directive
+        (name)))
+    (input_fields_definition
+      (input_value_definition
+        (name)
+        (named_type
+          (name)))
+      (input_value_definition
+        (name)
+        (named_type
+          (name))
+        (default_value
+          (string_value
+            (string_content)))))))
+
+========================================
+Directive definition
+========================================
+
+"d" directive @d(a: Int) repeatable on | QUERY | FRAGMENT_VARIABLE_DEFINITION | FIELD_DEFINITION
+
+directive @e on ENUM_VALUE
+
+----------------------------------------
+
+(document
+  (directive_definition
+    (description
+      (string_value
+        (string_content)))
+    (name)
+    (arguments_definition
+      (input_value_definition
+        (name)
+        (named_type
+          (name))))
+    (directive_locations
+      (executable_directive_location)
+      (executable_directive_location)
+      (type_system_directive_location)))
+  (directive_definition
+    (name)
+    (directive_locations
+      (type_system_directive_location))))
+
+========================================
+Keywords as field and enum value names
+========================================
+
+type A { type: Int on: String input: In }
+
+enum E { type on QUERY }
+
+----------------------------------------
+
+(document
+  (object_type_definition
+    (name)
+    (fields_definition
+      (field_definition
+        (name)
+        (named_type
+          (name)))
+      (field_definition
+        (name)
+        (named_type
+          (name)))
+      (field_definition
+        (name)
+        (named_type
+          (name)))))
+  (enum_type_definition
+    (name)
+    (enum_values_definition
+      (enum_value_definition
+        (enum_value
+          (name)))
+      (enum_value_definition
+        (enum_value
+          (name)))
+      (enum_value_definition
+        (enum_value
+          (name))))))

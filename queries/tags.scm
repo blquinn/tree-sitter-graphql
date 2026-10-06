@@ -1,0 +1,11 @@
+(object_type_definition name: (name) @name) @definition.class
+(interface_type_definition name: (name) @name) @definition.interface
+(union_type_definition name: (name) @name) @definition.type
+(enum_type_definition name: (name) @name) @definition.enum
+(input_object_type_definition name: (name) @name) @definition.class
+(scalar_type_definition name: (name) @name) @definition.type
+(directive_definition name: (name) @name) @definition.function
+(field_definition name: (name) @name) @definition.method
+(fragment_definition (fragment_name (name) @name)) @definition.function
+(operation_definition name: (name) @name) @definition.function
+(fragment_spread (fragment_name (name) @name)) @reference.call
